@@ -1,0 +1,7 @@
+[Bb]in/
+[Oo]bj/
+
+# Visual Studio Temporary files
+*.suo
+*.user
+*.sln.docstates
