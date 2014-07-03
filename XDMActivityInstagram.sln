@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XDMActivityInstagram", "XDMActivityInstagram\XDMActivityInstagram.csproj", "{A3E4AC2C-FEC4-4C47-B016-E37A38FC6308}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A3E4AC2C-FEC4-4C47-B016-E37A38FC6308}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{A3E4AC2C-FEC4-4C47-B016-E37A38FC6308}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{A3E4AC2C-FEC4-4C47-B016-E37A38FC6308}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{A3E4AC2C-FEC4-4C47-B016-E37A38FC6308}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{A3E4AC2C-FEC4-4C47-B016-E37A38FC6308}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{A3E4AC2C-FEC4-4C47-B016-E37A38FC6308}.Debug|iPhone.Build.0 = Debug|iPhone
+		{A3E4AC2C-FEC4-4C47-B016-E37A38FC6308}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{A3E4AC2C-FEC4-4C47-B016-E37A38FC6308}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{A3E4AC2C-FEC4-4C47-B016-E37A38FC6308}.Release|iPhone.ActiveCfg = Release|iPhone
+		{A3E4AC2C-FEC4-4C47-B016-E37A38FC6308}.Release|iPhone.Build.0 = Release|iPhone
+		{A3E4AC2C-FEC4-4C47-B016-E37A38FC6308}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{A3E4AC2C-FEC4-4C47-B016-E37A38FC6308}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = XDMActivityInstagram\XDMActivityInstagram.csproj
+	EndGlobalSection
+EndGlobal
