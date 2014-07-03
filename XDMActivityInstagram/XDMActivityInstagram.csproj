@@ -91,6 +91,12 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default-568h%402x.png" />
+    <BundleResource Include="Resources\example_square.png" />
+    <BundleResource Include="Resources\example.png" />
+    <BundleResource Include="Resources\instagram.png" />
+    <BundleResource Include="Resources\instagram%402x.png" />
+    <BundleResource Include="Resources\instagram~ipad.png" />
+    <BundleResource Include="Resources\instagram~ipad%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -99,6 +105,16 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="XDMActivityInstagram.cs" />
+    <Compile Include="IXDMActivityInstagram.cs" />
+    <Compile Include="XDMAIDemoViewController.cs" />
+    <Compile Include="XDMAIDemoViewController.designer.cs">
+      <DependentUpon>XDMAIDemoViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <InterfaceDefinition Include="XDMAIDemoViewController_iPhone.xib" />
+    <InterfaceDefinition Include="XDMAIDemoViewController_iPad.xib" />
+  </ItemGroup>
 </Project>
