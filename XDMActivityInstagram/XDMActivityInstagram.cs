@@ -8,7 +8,7 @@ using System.IO;
 
 namespace XDMActivityInstagram
 {
-    public class XDMActivityInstagram
+    public class XDMActivityInstagram : UIActivity 
     {
         private readonly string InstagramUrl = "instagram://app";
 
