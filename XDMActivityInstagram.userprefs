@@ -1,18 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPad.7.1" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="XDMActivityInstagram/AppDelegate.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="XDMActivityInstagram/XDMActivityInstagram.cs">
     <Files>
-      <File FileName="XDMActivityInstagram/AppDelegate.cs" Line="18" Column="9" />
+      <File FileName="XDMActivityInstagram/AppDelegate.cs" Line="1" Column="1" />
+      <File FileName="XDMActivityInstagram/XDMActivityInstagram.cs" Line="97" Column="13" />
+      <File FileName="XDMActivityInstagram/IXDMActivityInstagram.cs" Line="1" Column="1" />
+      <File FileName="XDMActivityInstagram/XDMAIDemoViewController.cs" Line="1" Column="1" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State expanded="True">
-          <Node name="XDMActivityInstagram" expanded="True">
-            <Node name="AppDelegate.cs" selected="True" />
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
