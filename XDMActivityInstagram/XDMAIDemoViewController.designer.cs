@@ -18,19 +18,30 @@ namespace XDMActivityInstagram
 		[Outlet]
 		MonoTouch.UIKit.UIImageView imageView { get; set; }
 
+		[Outlet]
+		MonoTouch.UIKit.UIButton shareInstagram { get; set; }
+
 		[Action ("actionButton:")]
 		partial void actionButton (MonoTouch.UIKit.UIBarButtonItem sender);
+
+		[Action ("shareWithInstagram:")]
+		partial void shareWithInstagram (MonoTouch.UIKit.UIButton sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (imageView != null) {
-				imageView.Dispose ();
-				imageView = null;
+			if (shareInstagram != null) {
+				shareInstagram.Dispose ();
+				shareInstagram = null;
 			}
 
 			if (barButtonItem != null) {
 				barButtonItem.Dispose ();
 				barButtonItem = null;
+			}
+
+			if (imageView != null) {
+				imageView.Dispose ();
+				imageView = null;
 			}
 		}
 	}

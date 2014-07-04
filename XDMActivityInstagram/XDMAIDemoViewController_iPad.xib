@@ -8,6 +8,7 @@
             <connections>
                 <outlet property="barButtonItem" destination="Vug-Ib-Fht" id="uz4-V3-hgA"/>
                 <outlet property="imageView" destination="hvt-GO-VuZ" id="d1A-Qx-Wxa"/>
+                <outlet property="shareInstagram" destination="2B4-bn-kJK" id="f9O-Ta-lAH"/>
                 <outlet property="view" destination="iN0-l3-epB" id="kCW-yf-GMq"/>
             </connections>
         </placeholder>
@@ -32,6 +33,16 @@
                         </barButtonItem>
                     </items>
                 </toolbar>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2B4-bn-kJK">
+                    <rect key="frame" x="302" y="632" width="164" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Share with Instagram">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="shareWithInstagram:" destination="-1" eventType="touchUpInside" id="MEB-49-IEZ"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
