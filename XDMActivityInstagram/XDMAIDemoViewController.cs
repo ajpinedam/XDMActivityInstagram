@@ -18,8 +18,10 @@ namespace XDMActivityInstagram
         public XDMAIDemoViewController ()
             : base (UserInterfaceIdiomIsPhone ? "XDMAIDemoViewController_iPhone" : "XDMAIDemoViewController_iPad", null)
         {
+            var _toolBarItems = this.ToolbarItems;
 
         }
+
 
         public override void DidReceiveMemoryWarning ()
         {
@@ -31,7 +33,42 @@ namespace XDMActivityInstagram
         public override void ViewDidLoad ()
         {
             base.ViewDidLoad ();
+
         }
+
+        partial void shareWithInstagram (UIButton sender)
+        {
+
+            if(_popOver != null)
+            {
+                if(_popOver.PopoverVisible)
+                {
+                    return;
+                }else
+                {
+                    _popOver.Dismiss(true);
+                    _popOver = null;
+                }
+            }
+
+            var instagramActivity = new XDMActivityInstagram();
+            instagramActivity.IncludeURL = true;
+
+            instagramActivity.PresentFromButton = (UIButton) sender;
+            instagramActivity.PresentFromBarButton = this.barButtonItem;
+
+            var shareText = @"CatPaint #catpaint";
+
+            NSUrl shareUrl = new NSUrl(@"http://catpaint.info");
+
+            var activityItems = new NSObject[]{(NSString) shareText, shareUrl, this.imageView.Image};
+
+            instagramActivity.PerformAction(activityItems);
+
+
+        }
+
+
 
         partial void actionButton (UIBarButtonItem sender)
         {
@@ -50,7 +87,7 @@ namespace XDMActivityInstagram
             var instagramActivity = new XDMActivityInstagram();
             instagramActivity.IncludeURL = true;
 
-            instagramActivity.PresentFromButton = (UIBarButtonItem) sender;
+            instagramActivity.PresentFromBarButton = (UIBarButtonItem) sender;
 
             var shareText = @"CatPaint #catpaint";
 

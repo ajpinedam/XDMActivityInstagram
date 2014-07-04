@@ -37,7 +37,9 @@ namespace XDMActivityInstagram
         public UIDocumentInteractionController DocumentController {get; set;}
 
 
-        public UIBarButtonItem PresentFromButton {get; set;}
+        public UIBarButtonItem PresentFromBarButton {get; set;}
+
+        public UIButton PresentFromButton {get; set;}
 
 
         public override bool CanPerform(NSObject[] activyItems)
@@ -141,7 +143,7 @@ namespace XDMActivityInstagram
                 this.DocumentController.Annotation = dict;
             }
 
-            this.DocumentController.PresentOpenInMenu (this.PresentFromButton, true);
+            this.DocumentController.PresentOpenInMenu (this.PresentFromBarButton, true);
 
         }
 
@@ -158,6 +160,88 @@ namespace XDMActivityInstagram
         }
 
 
+        public void PerformAction(NSObject[] activyItems)
+        {
+            this.PrepareAction (activyItems);
+
+            var cropVal = this.ShareImage.Size.Height > this.ShareImage.Size.Width ? this.ShareImage.Size.Width : this.ShareImage.Size.Height;
+
+            cropVal *= this.ShareImage.CurrentScale;
+
+            var cropRect = new RectangleF {
+                Height = cropVal,
+                Width = cropVal
+            };
+
+            var imageRef = this.ShareImage.CGImage.WithImageInRect (cropRect);
+
+            var image =  UIImage.FromImage (imageRef);
+
+            var imageData = image.AsJPEG (1.0f);
+
+            //TODO: Find way to release image
+            imageRef.Dispose ();
+            //CGImageRelease (imageRef);
+
+            var path =  Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments);
+
+            var fullUrl = Path.Combine (path, "instagram.igo"); 
+
+            Console.WriteLine ("Full Url: " + fullUrl);
+
+            NSError error;
+
+            if (!imageData.Save(fullUrl, NSDataWritingOptions.Atomic, out error)) 
+            {
+                Console.WriteLine ("Error saving the image: " + fullUrl);
+                return;
+            }
+
+            NSUrl fileUrl = NSUrl.FromFilename (fullUrl);
+
+            this.DocumentController = UIDocumentInteractionController.FromUrl (fileUrl);
+
+            this.DocumentController.Delegate = new UIDocumentInteractionControllerDelegateClass(this);
+
+            DocumentController.Uti = "com.instagram.exclusivegram";
+
+            if (!string.IsNullOrEmpty (this.ShareString)) 
+            {
+                var dict = new NSMutableDictionary ();
+                dict.Add ((NSString)"InstagramCaption", (NSString)this.ShareString);
+                this.DocumentController.Annotation = dict;
+            }
+
+            this.DocumentController.PresentOpenInMenu (this.PresentFromBarButton, true);
+
+        }
+
+
+
+        public void PrepareAction(NSObject[] activyItems)
+        {
+            foreach (var item in activyItems) 
+            {
+                if (item.GetType () == typeof(UIImage)) 
+                {
+                    this.ShareImage = (UIImage)item;
+                } else if (item.GetType () == typeof(NSString)) 
+                {
+                    this.ShareString = 
+                        !string.IsNullOrEmpty (this.ShareString) 
+                        ? string.Format ("{0} {1}", this.ShareString, item.ToString ()) 
+                        : item.ToString ();
+                } 
+                else if (item.GetType () == typeof(NSUrl)) 
+                {
+                    if (IncludeURL)
+                        this.ShareString += !string.IsNullOrEmpty (this.ShareString) ? " " + ((NSUrl)item).AbsoluteString : ((NSUrl)item).AbsoluteString;
+                } else {
+                    //TODO: Log message: "Unknown item type %@", item"
+                }
+
+            }
+        }
 
     }
 }
