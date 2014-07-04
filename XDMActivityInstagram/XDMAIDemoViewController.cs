@@ -47,10 +47,10 @@ namespace XDMActivityInstagram
                 }
             }
 
-
             var instagramActivity = new XDMActivityInstagram();
+            instagramActivity.IncludeURL = true;
 
-            //instagramActivity.PresentFromButton = new UIBarButtonItem();
+            instagramActivity.PresentFromButton = (UIBarButtonItem) sender;
 
             var shareText = @"CatPaint #catpaint";
 
@@ -63,11 +63,10 @@ namespace XDMActivityInstagram
             var activityViewController = new UIActivityViewController(activityItems, applicationActivities);
 
             //switch for iPhone and iPad
-
             if(UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Pad)
             {
                 _popOver = new UIPopoverController (activityViewController);
-                //_popOver.Delegate = this;
+                _popOver.Delegate = new UIPopoverControllerDelegateClass(this);
                 _popOver.PresentFromBarButtonItem(sender, UIPopoverArrowDirection.Any, true);
             }
             else

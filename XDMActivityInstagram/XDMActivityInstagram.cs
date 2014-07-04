@@ -14,19 +14,20 @@ namespace XDMActivityInstagram
 
         public XDMActivityInstagram ()
         {
-            ActivityType = @"UIActivityTypePostToInstagram";
-            ActivityTitle = @"Instagram";
-
-            ActivityImage = new UIImage ("instagram.png");
 
         }
 
-        public string ActivityType {get; private set;}
+        public override string Title {
+            get {return "Instagram";}
+        }
 
-        public string ActivityTitle {get; private set;}
+        public override NSString Type {
+            get {return (NSString) "UIActivityTypePostToInstagram";}
+        }
 
-        public UIImage ActivityImage {get; private set;}
-
+        public override UIImage Image {
+            get {return new UIImage ("instagram.png");}
+        }
 
         public UIImage ShareImage {get; set;}
         public string ShareString {get; set;}
@@ -39,8 +40,10 @@ namespace XDMActivityInstagram
         public UIBarButtonItem PresentFromButton {get; set;}
 
 
-        public bool CanPerformWithActivityItems(List<object> activyItems)
+        public override bool CanPerform(NSObject[] activyItems)
         {
+            base.CanPerform (activyItems);
+
             var instagramUrl = new NSUrl (InstagramUrl);
 
             if (!UIApplication.SharedApplication.CanOpenUrl (instagramUrl)) 
@@ -59,14 +62,16 @@ namespace XDMActivityInstagram
             return false;
         }
 
-        public void PrepareWithActivityItems(List<object> activyItems)
+        public override void Prepare(NSObject[] activyItems)
         {
+            base.Prepare (activyItems);
+
             foreach (var item in activyItems) 
             {
                 if (item.GetType () == typeof(UIImage)) 
                 {
                     this.ShareImage = (UIImage)item;
-                } else if (item.GetType () == typeof(string)) 
+                } else if (item.GetType () == typeof(NSString)) 
                 {
                     this.ShareString = 
                             !string.IsNullOrEmpty (this.ShareString) 
@@ -84,8 +89,10 @@ namespace XDMActivityInstagram
             }
         }
 
-        public void PerformActivity()
+        public override void Perform()
         {
+            base.Perform ();
+
             var cropVal = this.ShareImage.Size.Height > this.ShareImage.Size.Width ? this.ShareImage.Size.Width : this.ShareImage.Size.Height;
 
             cropVal *= this.ShareImage.CurrentScale;
@@ -106,7 +113,8 @@ namespace XDMActivityInstagram
             //CGImageRelease (imageRef);
 
             var path =  Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments);
-            var fullUrl = string.Format ("{0}{1}", path, "instagram.igo"); 
+
+            var fullUrl = Path.Combine (path, "instagram.igo"); 
 
             Console.WriteLine ("Full Url: " + fullUrl);
 
@@ -118,14 +126,11 @@ namespace XDMActivityInstagram
                 return;
             }
 
-            NSUrl fileUrl = new NSUrl (fullUrl);
+            NSUrl fileUrl = NSUrl.FromFilename (fullUrl);
 
-            this.DocumentController = new UIDocumentInteractionController
-            {
-                Url = fileUrl
-            };
+            this.DocumentController = UIDocumentInteractionController.FromUrl (fileUrl);
 
-            //this.DocumentController.Delegate = this;
+            this.DocumentController.Delegate = new UIDocumentInteractionControllerDelegateClass(this);
 
             DocumentController.Uti = "com.instagram.exclusivegram";
 

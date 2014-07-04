@@ -111,6 +111,8 @@
     <Compile Include="XDMAIDemoViewController.designer.cs">
       <DependentUpon>XDMAIDemoViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="UIDocumentInteractionControllerDelegateClass.cs" />
+    <Compile Include="UIPopoverControllerDelegateClass.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
